@@ -19,6 +19,7 @@ class App extends Component {
         this.state = {
             termsArray : [],
             drugsSearched: [],
+            toDisplay: false,
             // {drugSearched:[{"drugSyn":"rxcui"}, etc]}
             drugsDisplay: {}
         };
@@ -69,7 +70,8 @@ class App extends Component {
         drugInfoDict[drugSearched] = drugInfo;
         this.setState({
             drugsDisplay: drugInfoDict, 
-            drugsSearched: stateDrugsSearched
+            drugsSearched: stateDrugsSearched,
+            toDisplay: true
         });
     }
 
@@ -93,6 +95,23 @@ class App extends Component {
     // }
 
     render(){
+        if (this.state.toDisplay){
+            return(
+
+                <div className="appDiv">
+                    <SearchBar 
+                        inputPlaceholder = "Drug Name"
+                        inputVal="drugName"
+                        btnName="Search"
+                        funcSearch={this.onDrugSearch}
+                        funcInput={this.ondrugFragSearch}
+                        terms={this.state.termsArray}
+                    />
+                    
+                    <ResultsMenu />
+                </div>
+            );
+        }
         return(
             <div className="appDiv">
                 <SearchBar 
@@ -103,7 +122,6 @@ class App extends Component {
                     funcInput={this.ondrugFragSearch}
                     terms={this.state.termsArray}
                 />
-                
             </div>
         );
     }

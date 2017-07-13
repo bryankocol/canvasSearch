@@ -18,10 +18,10 @@ class App extends Component {
 
         this.state = {
             termsArray : [],
-            drugsSearched: [],
+            drugSearched: "",
             toDisplay: false,
-            // {drugSearched:[{"drugSyn":"rxcui"}, etc]}
-            drugsDisplay: {}
+            // [{"drugSyn":"rxcui"}, etc]
+            drugsDisplay: []
         };
     }
     /// Query All Terms for AutoComplete ///
@@ -61,16 +61,13 @@ class App extends Component {
                 });
             }
         });
-        
-        const stateDrugsSearched = this.state.drugsSearched;
-        const drugSearched = response.drugGroup.name;
-        stateDrugsSearched.push(drugSearched);
-
-        const drugInfoDict =  {};
-        drugInfoDict[drugSearched] = drugInfo;
+    
+    
+        // const drugInfoDict =  {};
+        // drugInfoDict[drugSearched] = drugInfo;
         this.setState({
-            drugsDisplay: drugInfoDict, 
-            drugsSearched: stateDrugsSearched,
+            drugsDisplay: drugInfo, 
+            drugSearched: response.drugGroup.name,
             toDisplay: true
         });
     }
@@ -108,7 +105,9 @@ class App extends Component {
                         terms={this.state.termsArray}
                     />
                     
-                    <ResultsMenu />
+                    <ResultsMenu
+                        drugOptions={this.state.drugsDisplay} 
+                    />
                 </div>
             );
         }

@@ -7,6 +7,62 @@ class SearchBar extends Component {
         super();
         this.handleForm = this.handleForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.getSuggestions = this.getSuggestions.bind(this);
+        this.getSuggestionValue = this.getSuggestionValue.bind(this);
+        this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+
+
+        // Autosuggest is a controlled component.
+        // This means that you need to provide an input value
+        // and an onChange handler that updates this value (see below).
+        // Suggestions also need to be provided to the Autosuggest,
+        // and they are initially empty because the Autosuggest is closed.
+        this.state = {
+          value: '',
+          suggestions: []
+        };
+    }
+
+    getSuggestions (value) {
+        const termOptions = this.props.terms;
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+
+        return inputLength === 0 ? [] : termOptions.filter(term =>
+            term.name.toLowerCase().slice(0, inputLength) === inputValue
+        );
+    };
+
+    getSuggestionValue (suggestion) {
+        return(suggestion.name);
+    }
+
+    renderSuggestion(suggestion) {
+        return (
+            <div>
+            {suggestion.name}
+            </div>
+        );
+    }
+
+    onChange (event, { newValue }){
+        this.setState({
+          value: newValue
+        });
+    }
+
+    onSuggestionsFetchRequested ({ value }) {
+        this.setState({
+          suggestions: this.getSuggestions(value)
+        });
+    }
+
+    onSuggestionsClearRequested () {
+        this.setState({
+          suggestions: []
+        });
     }
 
     handleForm(e) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
 import Autosuggest from 'react-autosuggest';
-import Auto from './autosuggest';
+
+import AutoFill from './AutoFill';
 
 class SearchBar extends Component {
     constructor(){
@@ -97,7 +97,7 @@ class SearchBar extends Component {
                     }}
                 >
 
-                    <Auto 
+                    <AutoFill
                         terms={this.props.terms}
                         suggestions={this.state.suggestions}
                         value={this.state.value}

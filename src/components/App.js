@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import OptionsDisplay from './OptionsDisplay';
 import ResultsMenu from './ResultsMenu';
 import SearchBar from './SearchBar';
-import Auto from './autosuggest';
 
 import * as api from '../api';
 

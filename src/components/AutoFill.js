@@ -1,0 +1,29 @@
+import React, { Component } from 'react';
+
+import Autosuggest from 'react-autosuggest';
+
+class AutoFill extends Component {
+
+  render() {
+      const { value, suggestions } = this.props;
+      // Autosuggest will pass through all these props to the input.
+      const inputProps = {
+        placeholder: 'Type a programming language',
+        value,
+        onChange: this.props.onChange
+      };
+
+      return (
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.props.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.props.onSuggestionsClearRequested}
+          getSuggestionValue={this.props.getSuggestionValue}
+          renderSuggestion={this.props.renderSuggestion}
+          inputProps={inputProps}
+        />
+      );
+  }
+}
+      
+export default AutoFill;

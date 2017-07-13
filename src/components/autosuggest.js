@@ -28,26 +28,14 @@ class Auto extends Component {
         };
     }
 
-//   const languages = [
-//   {
-//     name: 'C',
-//     year: 1972
-//   },
-//   {
-//     name: 'Elm',
-//     year: 2012
-//   },
-
-// ];
-
 // Teach Autosuggest how to calculate suggestions for any given input value.
     getSuggestions (value) {
-        const languages = this.props.terms;
+        const termOptions = this.props.terms;
         const inputValue = value.trim().toLowerCase();
         const inputLength = inputValue.length;
 
-        return inputLength === 0 ? [] : languages.filter(lang =>
-            lang.name.toLowerCase().slice(0, inputLength) === inputValue
+        return inputLength === 0 ? [] : termOptions.filter(term =>
+            term.name.toLowerCase().slice(0, inputLength) === inputValue
         );
     };
 

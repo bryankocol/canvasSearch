@@ -17,7 +17,8 @@ class App extends Component {
         // this.onDrugFragmentSearchSuccess = this.onDrugFragmentSearchSuccess.bind(this);
 
         this.state = {
-            termsArray : []
+            termsArray : [],
+            drugsSearched: [],
         };
     }
     /// Query All Terms for AutoComplete ///
@@ -45,7 +46,31 @@ class App extends Component {
     /// Search for Intial Drug Dose Options ///
     onDrugSearchSuccess(response){
         console.log("onDrugSearchSuccess response", response);
+        const infoArray = response.drugGroup.conceptGroup;
+
+        let drugInfo = [];
+        infoArray.forEach( obj => {
+            if ("conceptProperties" in obj){
+                obj.conceptProperties.forEach( item => { 
+                    let drugDict={}
+                    drugDict[item.synonym] = item.rxcui;
+                    drugInfo.push(drugDict);
+                });
+            }
+        });
+        
+        const stateDrugsSearched = this.state.drugsSearched;
+        const drugSearched = response.drugGroup.name;
+        stateDrugsSearched.push(drugSearched);
+
+        const drugInfoDict =  {};
+        drugInfoDict[drugSearched] = drugInfo;
+        this.setState({
+            drugsDisplay: drugInfoDict, 
+            drugsSearched: stateDrugsSearched
+        });
     }
+
 
     onDrugSearch(drugName){
         console.log("onDrugSearch drugName", drugName);

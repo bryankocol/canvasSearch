@@ -77,23 +77,23 @@ class Auto extends Component {
     // }
 
     render() {
-        const { value, suggestions } = this.state;
+        const { value, suggestions } = this.props;
 
         // Autosuggest will pass through all these props to the input.
         const inputProps = {
           placeholder: 'Type a programming language',
           value,
-          onChange: this.onChange
+          onChange: this.props.onChange
         };
 
         // Finally, render it!
         return (
           <Autosuggest
             suggestions={suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={this.getSuggestionValue}
-            renderSuggestion={this.renderSuggestion}
+            onSuggestionsFetchRequested={this.props.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.props.onSuggestionsClearRequested}
+            getSuggestionValue={this.props.getSuggestionValue}
+            renderSuggestion={this.props.renderSuggestion}
             inputProps={inputProps}
           />
         );

@@ -69,9 +69,7 @@ class App extends Component {
                     funcInput={this.ondrugFragSearch}
                     terms={this.state.termsArray}
                 />
-                <Auto 
-                    terms={this.state.termsArray}
-                />
+                
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Autosuggest from 'react-autosuggest';
+import Auto from './autosuggest';
 
 class SearchBar extends Component {
     constructor(){
@@ -70,8 +71,10 @@ class SearchBar extends Component {
 
         // may not need to clear search
         //const inputVal = this.props.inputVal;
-        const nameSearched = this.inputVal.value;
-
+        // const nameSearched = this.inputVal.value;
+        let form = document.getElementById(this.props.inputVal);
+        let input = form.getElementsByTagName("input")[0];
+        let nameSearched = input.value;
         this.props.funcSearch(nameSearched);
     }
 
@@ -94,18 +97,15 @@ class SearchBar extends Component {
                     }}
                 >
 
-                    <input
-                        className="searchBarInput"
-                        type="text"
-                        placeholder={this.props.inputPlaceholder}
-
-                        ref={(input) =>{
-                            this.inputVal = input;
-                        }}
-
-                        onChange={e =>{
-                            this.handleChange(e);
-                        }}
+                    <Auto 
+                        terms={this.props.terms}
+                        suggestions={this.state.suggestions}
+                        value={this.state.value}
+                        onChange={this.onChange}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        getSuggestionValue={this.getSuggestionValue}
+                        renderSuggestion={this.renderSuggestion}
                     />
 
                     <input 

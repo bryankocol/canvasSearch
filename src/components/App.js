@@ -19,6 +19,8 @@ class App extends Component {
         this.state = {
             termsArray : [],
             drugsSearched: [],
+            // {drugSearched:[{"drugSyn":"rxcui"}, etc]}
+            drugsDisplay: {}
         };
     }
     /// Query All Terms for AutoComplete ///

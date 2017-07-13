@@ -6,12 +6,19 @@ export function autoCompleteTerms() {
         type: "GET"
     })
 }
-//Change encodeURI check if runs
-export function drugFragmentSearch(drugNameFragment) {
-    const urlSearch = "https://rxnav.nlm.nih.gov/REST/displaynames.json" + encodeURIComponent(drugNameFragment)
+// //Change encodeURI check if runs
+// export function drugFragmentSearch(drugNameFragment) {
+//     const urlSearch = "https://rxnav.nlm.nih.gov/REST/displaynames.json" + encodeURIComponent(drugNameFragment)
+//     return $.ajax({
+//         url: urlSearch,
+//         type: "GET"
+        
+//     })
+// }
+export function drugSearch(drugName) {
+    const urlSearch = "https://rxnav.nlm.nih.gov/REST/drugs.json?name=" + drugName;
     return $.ajax({
         url: urlSearch,
         type: "GET"
-        
     })
 }

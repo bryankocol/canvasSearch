@@ -108,7 +108,8 @@ class SearchBar extends Component {
                     />
 
                     <input 
-                        className="searchBarSubmit button"
+                        id="searchBarSubmit"
+                        className="searchBarSubmit"
                         type="submit"
                         value={this.props.btnName}
                     />

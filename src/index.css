@@ -9,21 +9,60 @@ body {
     margin-top: 20px;
 }
 
-.button {
-    background-color: #f07452;
+/*SearchBar*/
+.react-autosuggest__container input{
+    color: gray;
+    font-weight: lighter;
+}
+.searchBarSubmit {
+    background-color:  #09b8e4 !important;
+    border-color: #09b8e4 !important;
 }
 
-.searchBarSubmit {
-    background-color:  #f07452;
+.searchBarSubmit:active {
+    background-color:  gray !important;
+    border-color: gray !important;
+}
+
+.searchBarSubmit:hover {
+    background-color:  gray !important;
+    border-color: gray !important;
+}
+
+.react-autosuggest__input:focus {
+    border-color: #09b8e4 !important;
 }
 
 .react-autosuggest__container ul{
     list-style-type: none;
 }
 
+/*ResuleMenu*/
+
 .Select-control {
     margin-bottom: 17px;
+} 
+
+.Select-value {
+    color: #09b8e4 !important;
 }
+
+.resultsMenuSubmit {
+    background-color: #09b8e4 !important;
+    border-color: #09b8e4 !important;
+}
+
+.resultsMenuSubmit:active {
+    background-color:  gray !important;
+    border-color: gray !important;
+}
+
+.resultsMenuSubmit:hover {
+    background-color:  gray !important;
+    border-color: gray !important;
+}
+
+/*OptionsDisplay*/
 
 .optionsDisplayDiv {
     border-top: solid gray 1px;
@@ -40,7 +79,18 @@ body {
 }
 
 .optionsDisplaySubmit{
+    background-color: #09b8e4 !important;
+    border-color: #09b8e4 !important;
     width: 40px;
-    padding: 0px;
+    padding: 0px !important;
 }
 
+.optionsDisplaySubmit:active {
+    background-color:  gray !important;
+    border-color: gray !important;
+}
+
+.optionsDisplaySubmit:hover {
+    background-color:  gray !important;
+    border-color: gray !important;
+}

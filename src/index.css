@@ -26,11 +26,17 @@ body {
     margin-top: 22px; 
 }
 
-.optionDisplayFormInfo {
-    display: inline-block;
-    margin-left: 17px;
-    margin-top: 17px;
+.optionsDisplaySpacer {
+    height: 35px;
 }
 
+.optionsDisplayFormInfo {
+    display: inline-block;
+    margin-left: 17px;
+}
 
+.optionsDisplaySubmit{
+    width: 40px;
+    padding: 0px;
+}
 

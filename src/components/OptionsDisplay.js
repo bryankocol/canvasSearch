@@ -22,18 +22,20 @@ class OptionsDisplay extends Component {
         console.log(obj, drugName);
         return(
             <form className="optionsDisplayForm" key={obj}> 
-                
-                <input className="optionsDisplaySubmit" value="save" type="submit" onClick={e => {
-                    this.handleOnClick(e);
-                    }}
-                />
-                
-                <div className="optionsDisplayFormInfo"> {drugName} </div>
+                <div className="displayOptionsFormInnerDiv"> 
 
-                <input type="hidden" value={drugName} ref={input => {
-                        this.drugName = input
-                    }} 
-                />
+                    <input className="optionsDisplaySubmit column column-10" value="save" type="submit" onClick={e => {
+                        this.handleOnClick(e);
+                        }}
+                    />
+                    <div className="optionsDisplayFormInfo column column-80"> {drugName} </div>
+
+                    <input type="hidden" value={drugName} ref={input => {
+                            this.drugName = input
+                        }} 
+                    />
+
+                </div>
 
             </form>
         );

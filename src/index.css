@@ -73,9 +73,13 @@ body {
     height: 35px;
 }
 
+.displayOptionsFormInnerDiv {
+    display: block;
+}
 .optionsDisplayFormInfo {
     display: inline-block;
     margin-left: 17px;
+    display: inline-block !important;
 }
 
 .optionsDisplaySubmit{
@@ -83,6 +87,7 @@ body {
     border-color: #09b8e4 !important;
     width: 40px;
     padding: 0px !important;
+    display: inline-block !important;
 }
 
 .optionsDisplaySubmit:active {

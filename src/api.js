@@ -16,7 +16,6 @@ export function autoCompleteTerms() {
 //     })
 // }
 export function drugSearch(drugName) {
-<<<<<<< HEAD
     const urlSearch = "https://rxnav.nlm.nih.gov/REST/drugs.json?name=" + encodeURIComponent(drugName);
     return $.ajax({
         url: urlSearch,
@@ -29,26 +28,7 @@ export function searchAllOptions(drugNumber) {
     return $.ajax({
         url: urlSearch,
         type: "GET"
-    })
-=======
-  const urlSearch =
-    'https://rxnav.nlm.nih.gov/REST/drugs.json?name=' + drugName;
-  return $.ajax({
-    url: urlSearch,
-    type: 'GET'
   });
-}
-
-export function searchAllOptions(drugNumber) {
-  const urlSearch =
-    'https://rxnav.nlm.nih.gov/REST/rxcui/' +
-    drugNumber +
-    '/related.json?tty=SCD+SBD';
-  return $.ajax({
-    url: urlSearch,
-    type: 'GET'
-  });
->>>>>>> css
 }
 
 export function saveSearchOption(drugName) {

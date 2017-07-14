@@ -28,6 +28,8 @@ def saveDrugSearch():
     returnVal = saveDrugSearchTerm(drugName)
     response = {'status' : 'ok'}
 
+    return jsonify(response)
+
 if __name__ == "__main__":
     import sys
 

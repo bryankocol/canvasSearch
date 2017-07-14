@@ -90,18 +90,10 @@ class App extends Component {
     ///handle Drug Dose Options Chosen From ResultsMenu ///
     onhandleDrugsSelectedSuccess(response){
         console.log(response);
-        // let rxcuiSearched = response.relatedGroup.rxcui;
         let optionsArray = response.relatedGroup.conceptGroup;
         let stateDrugOptionDisplay = this.state.drugOptionsDisplay;
         optionsArray.forEach( obj =>{
             let objInfo =  obj.conceptProperties[0];
-            // if ( rxcuiSearched in stateDrugOptionDisplay) {  
-            //     stateDrugOptionDisplay[rxcuiSearched][objInfo.rxcui] = objInfo.name;
-            // } else {
-            //     let drugNamesDict = {};
-            //     drugNamesDict[objInfo.rxcui] = objInfo.name;
-            //     stateDrugOptionDisplay[rxcuiSearched] =  drugNamesDict; 
-            // } 
             stateDrugOptionDisplay[objInfo.rxcui] = objInfo.name;
         });
         console.log(stateDrugOptionDisplay);
@@ -133,18 +125,6 @@ class App extends Component {
         api.saveSearchOption(drugName)
             .then(response => console.log("Your Search Has Been Saved"))
     }
-
-    // /// SearchBar Auto Complete Functions /////
-    // onDrugFragmentSearchSuccess(response){
-    //     console.log("onDrugFragmentSearchSuccess response", response);
-    // }
-
-    // ondrugFragSearch(drugNameFragment){
-    //     console.log("drugFragSearch drugNameFragment", drugNameFragment);
-
-    //     api.drugFragmentSearch(drugNameFragment)
-    //         .then(response => this.onDrugFragmentSearchSuccess(response))
-    // }
 
     render(){
         if (this.state.toDisplayMenu){

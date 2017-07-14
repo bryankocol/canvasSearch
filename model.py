@@ -7,7 +7,7 @@ import os
 
 db = SQLAlchemy()
 
-def connect_to_db(app, url = 'postgresql:///daily'):
+def connect_to_db(app, url = 'postgresql:///canvas'):
     """ Connect the database to our Flask app. """
 
     if 'DATABASE_URL' in os.environ:
@@ -38,10 +38,10 @@ class DrugSearch(db.Model):
     drugName = db.Column(db.String(400), nullable=False)
     searched_at = db.Column(AwareDateTime, default=db.func.now(), nullable=False)
 
-
-if __name__ == '_main_':
+if __name__ == '__main__':
     from server import app
 
     connect_to_db(app)
+
     db.create_all()
     print "Connected to DB."

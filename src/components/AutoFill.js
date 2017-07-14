@@ -15,7 +15,7 @@ class AutoFill extends Component {
 
       return (
         <Autosuggest
-          suggestions={suggestions}
+          suggestions={suggestions.slice(0, 50)}
           onSuggestionsFetchRequested={this.props.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.props.onSuggestionsClearRequested}
           getSuggestionValue={this.props.getSuggestionValue}

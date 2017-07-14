@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import AutoFill from './AutoFill';
 
 class SearchBar extends Component {
@@ -54,9 +53,9 @@ class SearchBar extends Component {
     }
 
     onSuggestionsFetchRequested ({ value }) {
-        this.setState({
+        setImmediate(this.setState({
           suggestions: this.getSuggestions(value)
-        });
+        }));
     }
 
     onSuggestionsClearRequested () {

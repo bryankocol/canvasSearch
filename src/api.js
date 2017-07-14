@@ -1,10 +1,10 @@
 import $ from 'jquery';
 
 export function autoCompleteTerms() {
-    return $.ajax({
-        url: "https://rxnav.nlm.nih.gov/REST/displaynames.json",
-        type: "GET"
-    })
+  return $.ajax({
+    url: 'https://rxnav.nlm.nih.gov/REST/displaynames.json',
+    type: 'GET'
+  });
 }
 // //Change encodeURI check if runs
 // export function drugFragmentSearch(drugNameFragment) {
@@ -12,31 +12,35 @@ export function autoCompleteTerms() {
 //     return $.ajax({
 //         url: urlSearch,
 //         type: "GET"
-        
+
 //     })
 // }
 export function drugSearch(drugName) {
-    const urlSearch = "https://rxnav.nlm.nih.gov/REST/drugs.json?name=" + drugName;
-    return $.ajax({
-        url: urlSearch,
-        type: "GET"
-    })
+  const urlSearch =
+    'https://rxnav.nlm.nih.gov/REST/drugs.json?name=' + drugName;
+  return $.ajax({
+    url: urlSearch,
+    type: 'GET'
+  });
 }
 
 export function searchAllOptions(drugNumber) {
-    const urlSearch = "https://rxnav.nlm.nih.gov/REST/rxcui/"+ drugNumber +"/related.json?tty=SCD+SBD";
-    return $.ajax({
-        url: urlSearch,
-        type: "GET"
-    })
+  const urlSearch =
+    'https://rxnav.nlm.nih.gov/REST/rxcui/' +
+    drugNumber +
+    '/related.json?tty=SCD+SBD';
+  return $.ajax({
+    url: urlSearch,
+    type: 'GET'
+  });
 }
 
 export function saveSearchOption(drugName) {
-    return $.ajax({
-        url: "/save/drugSearch",
-        type: "POST",
-        data: {
-            drugName: drugName
-        }
-    })
+  return $.ajax({
+    url: '/save/drugSearch',
+    type: 'POST',
+    data: {
+      drugName: drugName
+    }
+  });
 }

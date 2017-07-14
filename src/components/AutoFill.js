@@ -8,7 +8,7 @@ class AutoFill extends Component {
       const { value, suggestions } = this.props;
       // Autosuggest will pass through all these props to the input.
       const inputProps = {
-        placeholder: 'Type a programming language',
+        placeholder: 'Type a Drug or Ingredient',
         value,
         onChange: this.props.onChange
       };

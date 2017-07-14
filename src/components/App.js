@@ -6,6 +6,8 @@ import SearchBar from './SearchBar';
 
 import * as api from '../api';
 
+import 'react-select/dist/react-select.css';
+
 class App extends Component {
     constructor(){
         super();
@@ -13,15 +15,23 @@ class App extends Component {
         this.onQueryAutoCompleteTermsSuccess = this.onQueryAutoCompleteTermsSuccess.bind(this);
         this.onDrugSearch = this.onDrugSearch.bind(this);
         this.onDrugSearchSuccess = this.onDrugSearchSuccess.bind(this);
+        this.handleDrugsSelected = this.handleDrugsSelected.bind(this);
+        this.onhandleDrugsSelectedSuccess = this.onhandleDrugsSelectedSuccess.bind(this);
         // this.ondrugFragSearch = this.ondrugFragSearch.bind(this);
         // this.onDrugFragmentSearchSuccess = this.onDrugFragmentSearchSuccess.bind(this);
 
         this.state = {
             termsArray : [],
             drugSearched: "",
-            toDisplay: false,
+            toDisplayMenu: false,
+            toDisplayOptions: false,
             // [{"drugSyn":"rxcui"}, etc]
-            drugsDisplay: []
+            menuOptions: [],
+            //{drugrxcui: drugName, drugrxcui:drugName, etc}
+            menuOptionsSelected: {},
+            // {rxcuiSearched: {rxcuiOption: nameOption, rxcuiOpiton:nameOption}, etc}
+            drugOptionsDisplay: {}
+
         };
     }
     /// Query All Terms for AutoComplete ///
@@ -62,13 +72,10 @@ class App extends Component {
             }
         });
     
-    
-        // const drugInfoDict =  {};
-        // drugInfoDict[drugSearched] = drugInfo;
         this.setState({
-            drugsDisplay: drugInfo, 
+            menuOptions: drugInfo, 
             drugSearched: response.drugGroup.name,
-            toDisplay: true
+            toDisplayMenu: true
         });
     }
 
@@ -77,6 +84,47 @@ class App extends Component {
         console.log("onDrugSearch drugName", drugName);
         api.drugSearch(drugName)
             .then(response => this.onDrugSearchSuccess(response))
+    }
+
+    ///handle Drug Dose Options Chosen From ResultsMenu ///
+    onhandleDrugsSelectedSuccess(response){
+        console.log(response);
+        // let rxcuiSearched = response.relatedGroup.rxcui;
+        let optionsArray = response.relatedGroup.conceptGroup;
+        let stateDrugOptionDisplay = this.state.drugOptionsDisplay;
+        optionsArray.forEach( obj =>{
+            let objInfo =  obj.conceptProperties[0];
+            // if ( rxcuiSearched in stateDrugOptionDisplay) {  
+            //     stateDrugOptionDisplay[rxcuiSearched][objInfo.rxcui] = objInfo.name;
+            // } else {
+            //     let drugNamesDict = {};
+            //     drugNamesDict[objInfo.rxcui] = objInfo.name;
+            //     stateDrugOptionDisplay[rxcuiSearched] =  drugNamesDict; 
+            // } 
+            stateDrugOptionDisplay[objInfo.rxcui] = objInfo.name;
+        });
+        console.log(stateDrugOptionDisplay);
+        this.setState({
+            drugOptionsDisplay: stateDrugOptionDisplay,
+            toDisplayOptions: true,
+            toDisplayMenu: false
+        })
+    }
+
+    handleDrugsSelected(selectedDrugs){
+        selectedDrugs.forEach( obj => {
+            let drugNumber = obj.value;
+            api.searchAllOptions(drugNumber)
+                .then(response => this.onhandleDrugsSelectedSuccess(response))
+        });
+
+        let selectedDrugsDict = {}
+        selectedDrugs.forEach( obj =>{
+            let drugNumber = obj.value;
+            let drugName = obj.label;
+            selectedDrugsDict[drugNumber] = drugName;
+        });
+        this.setState({menuOptionsSelected: selectedDrugsDict})
     }
 
     // /// SearchBar Auto Complete Functions /////
@@ -92,7 +140,7 @@ class App extends Component {
     // }
 
     render(){
-        if (this.state.toDisplay){
+        if (this.state.toDisplayMenu){
             return(
 
                 <div className="appDiv">
@@ -106,7 +154,34 @@ class App extends Component {
                     />
                     
                     <ResultsMenu
-                        drugOptions={this.state.drugsDisplay} 
+                        drugName={this.state.drugSearched}
+                        drugOptions={this.state.menuOptions} 
+                        handleDrugsSelected={this.handleDrugsSelected}
+                    />
+                </div>
+            );
+        }
+        else if (this.state.toDisplayOptions){
+            return(
+
+                <div className="appDiv">
+                    <SearchBar 
+                        inputPlaceholder = "Drug Name"
+                        inputVal="drugName"
+                        btnName="Search"
+                        funcSearch={this.onDrugSearch}
+                        funcInput={this.ondrugFragSearch}
+                        terms={this.state.termsArray}
+                    />
+                    
+                    <ResultsMenu
+                        drugName={this.state.drugSearched}
+                        drugOptions={this.state.menuOptions} 
+                        handleDrugsSelected={this.handleDrugsSelected}
+                    />
+
+                    <OptionsDisplay 
+                        displayOptions={this.state.drugOptionsDisplay}
                     />
                 </div>
             );

@@ -22,3 +22,11 @@ export function drugSearch(drugName) {
         type: "GET"
     })
 }
+
+export function searchAllOptions(drugNumber) {
+    const urlSearch = "https://rxnav.nlm.nih.gov/REST/rxcui/"+ drugNumber +"/related.json?tty=SCD+SBD";
+    return $.ajax({
+        url: urlSearch,
+        type: "GET"
+    })
+}

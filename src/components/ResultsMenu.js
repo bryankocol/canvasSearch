@@ -51,7 +51,7 @@ class ResultsMenu extends Component {
                     value={this.state.value}
                     onChange={this.handleSelectChange}
                 />
-                <button  type="button" onClick={ e =>
+                <button className="resultsMenuSubmit" type="button" onClick={ e =>
                         {this.handleFinalSelection()}
                     }
                 > Search </button> 

@@ -149,7 +149,7 @@ class App extends Component {
         if (this.state.toDisplayMenu){
             return(
 
-                <div className="appDiv">
+                <div className="appDiv container">
                     <SearchBar 
                         inputPlaceholder = "Drug Name"
                         inputVal="drugName"
@@ -170,7 +170,7 @@ class App extends Component {
         else if (this.state.toDisplayOptions){
             return(
 
-                <div className="appDiv">
+                <div className="appDiv container">
                     <SearchBar 
                         inputPlaceholder = "Drug Name"
                         inputVal="drugName"
@@ -194,7 +194,7 @@ class App extends Component {
             );
         }
         return(
-            <div className="appDiv">
+            <div className="appDiv container">
                 <SearchBar 
                     inputPlaceholder = "Drug Name"
                     inputVal="drugName"

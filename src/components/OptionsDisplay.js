@@ -21,17 +21,18 @@ class OptionsDisplay extends Component {
         let drugName = this.props.displayOptions[obj];
         console.log(obj, drugName);
         return(
-            <form key={obj}> 
+            <form className="optionDisplayForm" key={obj}> 
+
+                <input className="optionDisplaySubmit" value="save" type="submit" onClick={e => {
+                    this.handleOnClick(e);
+                    }}
+                />
                 
-                {drugName}
+                <div className="optionDisplayFormInfo"> {drugName} </div>
+
                 <input type="hidden" value={drugName} ref={input => {
                         this.drugName = input
                     }} 
-                />
-
-                <input type="submit" onClick={e => {
-                    this.handleOnClick(e);
-                    }}
                 />
 
             </form>

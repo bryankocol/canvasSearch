@@ -60,7 +60,7 @@ class App extends Component {
     /// Search for Intial Drug Dose Options ///
     onDrugSearchSuccess(response){
         console.log("onDrugSearchSuccess response", response);
-        const infoArray = response.drugGroup.conceptGroup;
+        const infoArray = response.drugGroup.conceptGroup || [];
 
         let drugInfo = [];
         infoArray.forEach( obj => {

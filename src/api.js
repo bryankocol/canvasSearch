@@ -16,15 +16,15 @@ export function autoCompleteTerms() {
 //     })
 // }
 export function drugSearch(drugName) {
-    const urlSearch = "https://rxnav.nlm.nih.gov/REST/drugs.json?name=" + drugName;
+    const urlSearch = "https://rxnav.nlm.nih.gov/REST/drugs.json?name=" + encodeURIComponent(drugName);
     return $.ajax({
         url: urlSearch,
-        type: "GET"
+        type: "GET",
     })
 }
 
 export function searchAllOptions(drugNumber) {
-    const urlSearch = "https://rxnav.nlm.nih.gov/REST/rxcui/"+ drugNumber +"/related.json?tty=SCD+SBD";
+    const urlSearch = "https://rxnav.nlm.nih.gov/REST/rxcui/"+ encodeURIComponent(drugNumber) +"/related.json?tty=SCD+SBD";
     return $.ajax({
         url: urlSearch,
         type: "GET"

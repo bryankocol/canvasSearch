@@ -129,6 +129,7 @@ class App extends Component {
     }
 
     onSaveSearchOption(drugName){
+        console.log("onSaveSearchOption drugName", drugName)
         api.saveSearchOption(drugName)
             .then(response => console.log("Your Search Has Been Saved"))
     }

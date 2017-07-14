@@ -14,7 +14,7 @@ class OptionsDisplay extends Component {
         e.preventDefault();
         const drugName = this.drugName.value;
         console.log("ref drugName", drugName);
-        // this.props.onSaveSearchOption(drugName);
+        this.props.onSaveSearchOption(drugName);
     }
     
     renderOptionForm(obj) {

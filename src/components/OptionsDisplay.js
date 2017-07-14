@@ -7,61 +7,46 @@ class OptionsDisplay extends Component {
     constructor(){
         super();
         this.renderOptionForm = this.renderOptionForm.bind(this);
-        this.renderOptionParse = this.renderOptionParse.bind(this);
+        this.handleOnClick = this.handleOnClick.bind(this);
     }
 
-    renderOptionForm(rxcui, obj) {
-        let drugName = this.props.displayOptions[obj][rxcui];
-        console.log(drugName);
-        return(
-            <div key={rxcui}> 
-                hello
-            </div>
-        );
+    handleOnClick(e) {
+        e.preventDefault();
+        const drugName = this.drugName.value;
+        console.log("ref drugName", drugName);
+        // this.props.onSaveSearchOption(drugName);
     }
-    renderOptionParse(obj) {
+    
+    renderOptionForm(obj) {
         let drugName = this.props.displayOptions[obj];
         console.log(obj, drugName);
         return(
-            <div key={obj}> 
+            <form key={obj}> 
                 
                 {drugName}
+                <input type="hidden" value={drugName} ref={input => {
+                        this.drugName = input
+                    }} 
+                />
 
-            </div>
+                <input type="submit" onClick={e => {
+                    this.handleOnClick(e);
+                    }}
+                />
+
+            </form>
         );
-        // let infoDict = this.props.displayOptions[obj];
-        // console.log(infoDict);
-        // Object.keys(infoDict).map(rxcui => {
-        //     console.log(rxcui);
-        //     let drugName = infoDict[rxcui]
-        //     console.log(drugName) 
-        //     return("hello")
-
-        // });
-        // Object.keys(this.props.displayOptions[obj]).map (rxcui => {
-        //     let drugName = this.props.displayOptions[obj][rxcui];
-        //     console.log(drugName);
-        //     return(
-        //         <div key={rxcui}> 
-        //             hello
-        //         </div>
-        //     );
-        // })
-        // return(<div> {obj} </div>);
-            
-       
-        
     }
 
     render(){
         console.log("displayOptions O.D.", this.props.displayOptions);
         return(
             <div className="optionsDisplayDiv">
-                <form> 
-                    {Object.keys(this.props.displayOptions).map( obj => {
-                        return this.renderOptionParse(obj);
-                    })}
-                </form>
+                
+                {Object.keys(this.props.displayOptions).map( obj => {
+                    return this.renderOptionForm(obj);
+                })}
+                
             </div>
         );
     }

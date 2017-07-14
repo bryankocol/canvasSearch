@@ -26,7 +26,7 @@ def saveDrugSearch():
     print("drugName", drugName)
 
     returnVal = saveDrugSearchTerm(drugName)
-    response = {}
+    response = {'status' : 'ok'}
 
 if __name__ == "__main__":
     import sys

@@ -38,6 +38,7 @@ class DrugSearch(db.Model):
     drugName = db.Column(db.String(400), nullable=False)
     searched_at = db.Column(AwareDateTime, default=db.func.now(), nullable=False)
 
+
 if __name__ == '__main__':
     from server import app
 

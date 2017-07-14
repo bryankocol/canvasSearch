@@ -21,18 +21,21 @@ class OptionsDisplay extends Component {
         let drugName = this.props.displayOptions[obj];
         console.log(obj, drugName);
         return(
-            <form key={obj}> 
-                
-                {drugName}
-                <input type="hidden" value={drugName} ref={input => {
-                        this.drugName = input
-                    }} 
-                />
+            <form className="optionsDisplayForm" key={obj}> 
+                <div className="displayOptionsFormInnerDiv"> 
 
-                <input type="submit" onClick={e => {
-                    this.handleOnClick(e);
-                    }}
-                />
+                    <input className="optionsDisplaySubmit column column-10" value="save" type="submit" onClick={e => {
+                        this.handleOnClick(e);
+                        }}
+                    />
+                    <div className="optionsDisplayFormInfo column column-80"> {drugName} </div>
+
+                    <input type="hidden" value={drugName} ref={input => {
+                            this.drugName = input
+                        }} 
+                    />
+
+                </div>
 
             </form>
         );
@@ -42,7 +45,7 @@ class OptionsDisplay extends Component {
         console.log("displayOptions O.D.", this.props.displayOptions);
         return(
             <div className="optionsDisplayDiv">
-                
+                <div className="optionsDisplaySpacer"> </div>
                 {Object.keys(this.props.displayOptions).map( obj => {
                     return this.renderOptionForm(obj);
                 })}

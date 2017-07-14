@@ -17,6 +17,7 @@ class App extends Component {
         this.onDrugSearchSuccess = this.onDrugSearchSuccess.bind(this);
         this.handleDrugsSelected = this.handleDrugsSelected.bind(this);
         this.onhandleDrugsSelectedSuccess = this.onhandleDrugsSelectedSuccess.bind(this);
+        this.onSaveSearchOption = this.onSaveSearchOption.bind(this);
         // this.ondrugFragSearch = this.ondrugFragSearch.bind(this);
         // this.onDrugFragmentSearchSuccess = this.onDrugFragmentSearchSuccess.bind(this);
 
@@ -127,6 +128,11 @@ class App extends Component {
         this.setState({menuOptionsSelected: selectedDrugsDict})
     }
 
+    onSaveSearchOption(drugName){
+        api.saveSearchOption(drugName)
+            .then(response => console.log("Your Search Has Been Saved"))
+    }
+
     // /// SearchBar Auto Complete Functions /////
     // onDrugFragmentSearchSuccess(response){
     //     console.log("onDrugFragmentSearchSuccess response", response);
@@ -182,6 +188,7 @@ class App extends Component {
 
                     <OptionsDisplay 
                         displayOptions={this.state.drugOptionsDisplay}
+                        onSaveSearchOption={this.onSaveSearchOption}
                     />
                 </div>
             );

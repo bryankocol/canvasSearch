@@ -30,3 +30,13 @@ export function searchAllOptions(drugNumber) {
         type: "GET"
     })
 }
+
+export function saveSearchOption(drugName) {
+    return $.ajax({
+        url: "/save/drugSearch",
+        type: "POST",
+        data: {
+            drugName: drugName
+        }
+    })
+}

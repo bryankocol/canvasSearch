@@ -17,11 +17,11 @@ class OptionsDisplay extends Component {
         this.props.onSaveSearchOption(drugName);
     }
     
-    renderOptionForm(obj) {
-        let drugName = this.props.displayOptions[obj];
-        console.log(obj, drugName);
+    renderOptionForm(innerRxcui, obj) {
+        let drugName = obj[innerRxcui];
+        console.log("innerRxcui, drugName",innerRxcui, drugName);
         return(
-            <form className="optionsDisplayForm" key={obj}> 
+            <form className="optionsDisplayForm" key={innerRxcui}> 
                 <div className="displayOptionsFormInnerDiv"> 
 
                     <input className="optionsDisplaySubmit column column-10" value="save" type="submit" onClick={e => {
@@ -43,11 +43,17 @@ class OptionsDisplay extends Component {
 
     render(){
         console.log("displayOptions O.D.", this.props.displayOptions);
+        const displayOptions = this.props.displayOptions;
         return(
             <div className="optionsDisplayDiv">
                 <div className="optionsDisplaySpacer"> </div>
-                {Object.keys(this.props.displayOptions).map( obj => {
-                    return this.renderOptionForm(obj);
+                {Object.keys(displayOptions).map( rxcuiNum => {
+                    console.log("rxcuiNum", rxcuiNum);
+                    return ( Object.keys(displayOptions[rxcuiNum]).map( innerRxcui => {
+                        return( this.renderOptionForm(innerRxcui, displayOptions[rxcuiNum])
+                    )}))
+                        
+                    
                 })}
                 
             </div>

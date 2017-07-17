@@ -89,14 +89,23 @@ class App extends Component {
 
     ///handle Drug Dose Options Chosen From ResultsMenu ///
     onhandleDrugsSelectedSuccess(response){
-        console.log(response);
+        console.log("onHandledrugSelectedSuccess response",response);
+        let rxcuiSearched = response.relatedGroup.rxcui;
         let optionsArray = response.relatedGroup.conceptGroup;
         let stateDrugOptionDisplay = this.state.drugOptionsDisplay;
+        console.log("drugOptionsDisplay", this.state.drugOptionsDisplay);
         optionsArray.forEach( obj =>{
             let objInfo =  obj.conceptProperties[0];
-            stateDrugOptionDisplay[objInfo.rxcui] = objInfo.name;
+                if ( rxcuiSearched in stateDrugOptionDisplay) { 
+                    stateDrugOptionDisplay[rxcuiSearched][objInfo.rxcui] = objInfo.name;
+                } else {
+                    let drugNamesDict = {};
+                    drugNamesDict[objInfo.rxcui] = objInfo.name;
+                    stateDrugOptionDisplay[rxcuiSearched] =  drugNamesDict; 
+                }
+            // stateDrugOptionDisplay[objInfo.rxcui] = objInfo.name;
         });
-        console.log(stateDrugOptionDisplay);
+        console.log("stateDrugOptionDisplay", stateDrugOptionDisplay);
         this.setState({
             drugOptionsDisplay: stateDrugOptionDisplay,
             toDisplayOptions: true,

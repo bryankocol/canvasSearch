@@ -55,7 +55,6 @@ If using npm :
 This project uses webpack to building all frontend files.
 In packages.json devDependencies is empty but before this project was deployed held the react-scripts requirement found now in dependencies. This change enabled deployment in build mode. 
 
-```
 ## Installing:
 1) create a database using postgres and source the database. To learn more about postgres: https://www.postgresql.org/download/. The seed.py file contains basic color options for your calendar and is essential. 
 ``` 
@@ -77,7 +76,7 @@ If using npm
 ``` 
 
 ## Built With:
-*Python- Backend Language
+* Python- Backend Language
 * Flask - Python web frame work
 * SqlAlchemy- Database Toolkit for python (ORM)
 * PostgreSQL- Object Relational Database System 

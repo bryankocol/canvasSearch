@@ -27,7 +27,6 @@ class App extends Component {
             drugSearched: "",
             toDisplayMenu: false,
             toDisplayOptions: false,
-            toClearmenu: false,
             value: [],
             // [{"drugSyn":"rxcui"}, etc]
             menuOptions: [],
@@ -75,11 +74,6 @@ class App extends Component {
                 });
             }
         });
-
-        const stateDrugSearched = this.state.drugSearched;
-        if (stateDrugSearched !== response.drugGroup.name) {
-            let stateValue = [];
-        }
 
         this.setState({
             menuOptions: drugInfo, 

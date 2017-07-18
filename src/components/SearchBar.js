@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AutoFill from './AutoFill';
+import PropTypes from 'prop-types';
 
 class SearchBar extends Component {
     constructor(){
@@ -119,4 +120,10 @@ class SearchBar extends Component {
     }
 }
 
+SearchBar.propTypes = {
+    terms: PropTypes.arrayOf(PropTypes.object),
+    btnName: PropTypes.string,
+    funcInput: PropTypes.func,
+    funcSearch: PropTypes.func
+};
 export default SearchBar;

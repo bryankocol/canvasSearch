@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Autosuggest from 'react-autosuggest';
 
@@ -25,5 +26,15 @@ class AutoFill extends Component {
       );
   }
 }
+
+AutoFill.propTypes = {
+  onSuggestionsFetchRequested: PropTypes.func,
+  onSuggestionsClearRequested: PropTypes.func,
+  getSuggestionValue: PropTypes.func,
+  renderSuggestion: PropTypes.func,
+  inputProps: PropTypes.object
+
+
+};
       
 export default AutoFill;

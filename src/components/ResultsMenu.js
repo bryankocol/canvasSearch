@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 class ResultsMenu extends Component {
     constructor(){
@@ -18,9 +19,7 @@ class ResultsMenu extends Component {
             let drugOptionDict = {}
             const drugOption = Object.keys(obj)[0];
             const drugRxcui = obj[drugOption];
-            // const optVal = {}
-            // optVal[drugOption] = drugRxcui;
-            // drugOptionDict["value"] = optVal;
+        
             drugOptionDict["value"] = drugRxcui;
             drugOptionDict["label"] = drugOption;
             options.push(drugOptionDict);
@@ -31,7 +30,6 @@ class ResultsMenu extends Component {
     
     handleSelectChange (value) {
         this.props.handleSelectChange(value);
-        // this.setState({ value });
     }
 
     handleFinalSelection() {
@@ -61,5 +59,13 @@ class ResultsMenu extends Component {
         );
     }
 }
+
+ResultsMenu.propTypes = {
+    drugOptions: PropTypes.arrayOf(PropTypes.object),
+    value: PropTypes.arrayOf(PropTypes.object),
+    handleDrugsSelected: PropTypes.func,
+    handleDrugsSelected: PropTypes.func
+};
+
 
 export default ResultsMenu;

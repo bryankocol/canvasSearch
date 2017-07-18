@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 class OptionsDisplay extends Component {
     // displayOptions
@@ -72,4 +72,9 @@ class OptionsDisplay extends Component {
     }
 }
 
+OptionsDisplay.propTypes = {
+    displayOptions: PropTypes.objectOf(PropTypes.object),
+    menuOptionsSelected: PropTypes.object,
+    onSaveSearchOption: PropTypes.func
+};
 export default OptionsDisplay;

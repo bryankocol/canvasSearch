@@ -6,9 +6,9 @@ class ResultsMenu extends Component {
         super();
         this.displayOptions= this.displayOptions.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
-        this.state = {
-            value : []
-        };
+        // this.state = {
+        //     value : []
+        // };
     }
 
     displayOptions(drugOptions) {
@@ -30,11 +30,12 @@ class ResultsMenu extends Component {
     }
     
     handleSelectChange (value) {
-        this.setState({ value });
+        this.props.handleSelectChange(value);
+        // this.setState({ value });
     }
 
     handleFinalSelection() {
-        let selectedDrugs = this.state.value;
+        let selectedDrugs = this.props.value;
         this.props.handleDrugsSelected(selectedDrugs);
     }
 
@@ -48,7 +49,7 @@ class ResultsMenu extends Component {
                     placeholder="Choose Any Number of Options"
                     multi
                     options={ this.displayOptions(this.props.drugOptions) }
-                    value={this.state.value}
+                    value={this.props.value}
                     onChange={this.handleSelectChange}
                 />
                 <button className="resultsMenuSubmit" type="button" onClick={ e =>

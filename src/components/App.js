@@ -18,6 +18,7 @@ class App extends Component {
         this.handleDrugsSelected = this.handleDrugsSelected.bind(this);
         this.onhandleDrugsSelectedSuccess = this.onhandleDrugsSelectedSuccess.bind(this);
         this.onSaveSearchOption = this.onSaveSearchOption.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         // this.ondrugFragSearch = this.ondrugFragSearch.bind(this);
         // this.onDrugFragmentSearchSuccess = this.onDrugFragmentSearchSuccess.bind(this);
 
@@ -26,6 +27,8 @@ class App extends Component {
             drugSearched: "",
             toDisplayMenu: false,
             toDisplayOptions: false,
+            toClearmenu: false,
+            value: [],
             // [{"drugSyn":"rxcui"}, etc]
             menuOptions: [],
             //{drugrxcui: drugName, drugrxcui:drugName, etc}
@@ -74,14 +77,18 @@ class App extends Component {
         });
 
         const stateDrugSearched = this.state.drugSearched;
-        
+        if (stateDrugSearched !== response.drugGroup.name) {
+            let stateValue = [];
+        }
+
         this.setState({
             menuOptions: drugInfo, 
             drugSearched: response.drugGroup.name,
             menuOptionsSelected : {},
             toDisplayMenu: true,
             toDisplayOptions: false,
-            drugOptionsDisplay: {}
+            drugOptionsDisplay: {}, 
+            value: []
         });
     }
 
@@ -92,6 +99,9 @@ class App extends Component {
             .then(response => this.onDrugSearchSuccess(response))
     }
 
+    handleSelectChange(value) {
+        this.setState({value});
+    }
     ///handle Drug Dose Options Chosen From ResultsMenu ///
     onhandleDrugsSelectedSuccess(response){
         console.log("onHandledrugSelectedSuccess response",response);
@@ -159,6 +169,8 @@ class App extends Component {
                         drugName={this.state.drugSearched}
                         drugOptions={this.state.menuOptions} 
                         handleDrugsSelected={this.handleDrugsSelected}
+                        value={this.state.value}
+                        handleSelectChange={this.handleSelectChange}
                     />
                 </div>
             );
@@ -180,6 +192,8 @@ class App extends Component {
                         drugName={this.state.drugSearched}
                         drugOptions={this.state.menuOptions} 
                         handleDrugsSelected={this.handleDrugsSelected}
+                        value={this.state.value}
+                        handleSelectChange={this.handleSelectChange}
                     />
 
                     <OptionsDisplay 

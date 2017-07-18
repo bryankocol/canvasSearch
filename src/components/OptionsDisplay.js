@@ -12,10 +12,15 @@ class OptionsDisplay extends Component {
 
     handleOnClick(e) {
         e.preventDefault();
-        const drugName = this.drugName.value;
-        console.log("ref drugName", drugName);
-        this.props.onSaveSearchOption(drugName);
+        let form = e.target.closest("form");
+        let drugNameVal = form.getElementsByTagName('input')[1].value;
+        console.log("drugNameVal", drugNameVal);
+       
+        this.props.onSaveSearchOption(drugNameVal);
     }
+
+    // ref={input => {
+    //                         this.drugName = input}}
     
     renderOptionForm(innerRxcui, obj) {
         let drugName = obj[innerRxcui];
@@ -30,11 +35,8 @@ class OptionsDisplay extends Component {
                     />
                     <div className="optionsDisplayFormInfo column column-80"> {drugName} </div>
 
-                    <input type="hidden" value={drugName} ref={input => {
-                            this.drugName = input
-                        }} 
-                    />
-
+                    <input type="hidden" name="drugName" value={drugName} />
+                         
                 </div>
 
             </form>

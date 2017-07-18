@@ -44,14 +44,23 @@ class OptionsDisplay extends Component {
     render(){
         console.log("displayOptions O.D.", this.props.displayOptions);
         const displayOptions = this.props.displayOptions;
+        const menuOptionsSelected = this.props.menuOptionsSelected;
+        console.log("menuOptionsSelected",menuOptionsSelected);
         return(
             <div className="optionsDisplayDiv">
                 <div className="optionsDisplaySpacer"> </div>
                 {Object.keys(displayOptions).map( rxcuiNum => {
                     console.log("rxcuiNum", rxcuiNum);
-                    return ( Object.keys(displayOptions[rxcuiNum]).map( innerRxcui => {
-                        return( this.renderOptionForm(innerRxcui, displayOptions[rxcuiNum])
-                    )}))
+
+                    return (
+                        <div key={rxcuiNum} > <div className="optionsDisplaySubHeader subHeader"> Results for {menuOptionsSelected[rxcuiNum]} </div> 
+                            {
+                                Object.keys(displayOptions[rxcuiNum]).map( innerRxcui => {
+                                return( this.renderOptionForm(innerRxcui, displayOptions[rxcuiNum])
+                                )})
+                            }
+                        </div>
+                    )
                         
                     
                 })}

@@ -73,9 +73,16 @@ body {
     height: 35px;
 }
 
+.subHeader{
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
 .displayOptionsFormInnerDiv {
     display: block;
 }
+
 .optionsDisplayFormInfo {
     display: inline-block;
     margin-left: 17px;

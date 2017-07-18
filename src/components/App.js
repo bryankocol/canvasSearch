@@ -126,6 +126,7 @@ class App extends Component {
             let drugName = obj.label;
             selectedDrugsDict[drugNumber] = drugName;
         });
+        console.log("menuOptionsSelected", selectedDrugsDict)
         this.setState({menuOptionsSelected: selectedDrugsDict})
     }
 
@@ -177,6 +178,7 @@ class App extends Component {
                     />
 
                     <OptionsDisplay 
+                        menuOptionsSelected={this.state.menuOptionsSelected}
                         displayOptions={this.state.drugOptionsDisplay}
                         onSaveSearchOption={this.onSaveSearchOption}
                     />

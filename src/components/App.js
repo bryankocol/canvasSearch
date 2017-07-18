@@ -19,9 +19,7 @@ class App extends Component {
         this.onhandleDrugsSelectedSuccess = this.onhandleDrugsSelectedSuccess.bind(this);
         this.onSaveSearchOption = this.onSaveSearchOption.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
-        // this.ondrugFragSearch = this.ondrugFragSearch.bind(this);
-        // this.onDrugFragmentSearchSuccess = this.onDrugFragmentSearchSuccess.bind(this);
-
+        
         this.state = {
             termsArray : [],
             drugSearched: "",
@@ -43,7 +41,6 @@ class App extends Component {
     }
 
     onQueryAutoCompleteTermsSuccess(response){
-        console.log("onQueryAutoCompleteTermsSuccess response", response);
         let termsArray = [];
         response.displayTermsList.term.forEach( term => {
             let termsDict = {};
@@ -61,7 +58,6 @@ class App extends Component {
 
     /// Search for Intial Drug Dose Options ///
     onDrugSearchSuccess(response){
-        console.log("onDrugSearchSuccess response", response);
         const infoArray = response.drugGroup.conceptGroup || [];
 
         let drugInfo = [];
@@ -88,7 +84,6 @@ class App extends Component {
 
 
     onDrugSearch(drugName){
-        console.log("onDrugSearch drugName", drugName);
         api.drugSearch(drugName)
             .then(response => this.onDrugSearchSuccess(response))
     }
@@ -96,13 +91,14 @@ class App extends Component {
     handleSelectChange(value) {
         this.setState({value});
     }
+
     ///handle Drug Dose Options Chosen From ResultsMenu ///
     onhandleDrugsSelectedSuccess(response){
-        console.log("onHandledrugSelectedSuccess response",response);
+        
         let rxcuiSearched = response.relatedGroup.rxcui;
         let optionsArray = response.relatedGroup.conceptGroup;
         let stateDrugOptionDisplay = this.state.drugOptionsDisplay;
-        console.log("drugOptionsDisplay", this.state.drugOptionsDisplay);
+
         optionsArray.forEach( obj =>{
             let objInfo =  obj.conceptProperties[0];
                 if ( rxcuiSearched in stateDrugOptionDisplay) { 
@@ -112,9 +108,7 @@ class App extends Component {
                     drugNamesDict[objInfo.rxcui] = objInfo.name;
                     stateDrugOptionDisplay[rxcuiSearched] =  drugNamesDict; 
                 }
-            // stateDrugOptionDisplay[objInfo.rxcui] = objInfo.name;
         });
-        console.log("stateDrugOptionDisplay", stateDrugOptionDisplay);
         this.setState({
             drugOptionsDisplay: stateDrugOptionDisplay,
             toDisplayOptions: true,
@@ -135,12 +129,10 @@ class App extends Component {
             let drugName = obj.label;
             selectedDrugsDict[drugNumber] = drugName;
         });
-        console.log("menuOptionsSelected", selectedDrugsDict)
         this.setState({menuOptionsSelected: selectedDrugsDict})
     }
 
     onSaveSearchOption(drugName){
-        console.log("onSaveSearchOption drugName", drugName)
         api.saveSearchOption(drugName)
             .then(response => console.log("Your Search Has Been Saved"))
     }

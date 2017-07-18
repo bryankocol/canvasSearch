@@ -7,14 +7,10 @@ class ResultsMenu extends Component {
         super();
         this.displayOptions= this.displayOptions.bind(this);
         this.handleSelectChange = this.handleSelectChange.bind(this);
-        // this.state = {
-        //     value : []
-        // };
     }
 
     displayOptions(drugOptions) {
         let options = []
-        console.log("drugOptions D.R", drugOptions);
         drugOptions.forEach( obj => {
             let drugOptionDict = {}
             const drugOption = Object.keys(obj)[0];

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class OptionsDisplay extends Component {
-    // displayOptions
-
+    
     constructor(){
         super();
         this.renderOptionForm = this.renderOptionForm.bind(this);
@@ -14,17 +13,13 @@ class OptionsDisplay extends Component {
         e.preventDefault();
         let form = e.target.closest("form");
         let drugNameVal = form.getElementsByTagName('input')[1].value;
-        console.log("drugNameVal", drugNameVal);
-       
+    
         this.props.onSaveSearchOption(drugNameVal);
     }
-
-    // ref={input => {
-    //                         this.drugName = input}}
-    
+ 
     renderOptionForm(innerRxcui, obj) {
         let drugName = obj[innerRxcui];
-        console.log("innerRxcui, drugName",innerRxcui, drugName);
+
         return(
             <form className="optionsDisplayForm" key={innerRxcui}> 
                 <div className="displayOptionsFormInnerDiv"> 
@@ -44,16 +39,13 @@ class OptionsDisplay extends Component {
     }
 
     render(){
-        console.log("displayOptions O.D.", this.props.displayOptions);
         const displayOptions = this.props.displayOptions;
         const menuOptionsSelected = this.props.menuOptionsSelected;
-        console.log("menuOptionsSelected",menuOptionsSelected);
         return(
             <div className="optionsDisplayDiv">
                 <div className="optionsDisplaySpacer"> </div>
                 {Object.keys(displayOptions).map( rxcuiNum => {
-                    console.log("rxcuiNum", rxcuiNum);
-
+            
                     return (
                         <div key={rxcuiNum} > <div className="optionsDisplaySubHeader subHeader"> Results for {menuOptionsSelected[rxcuiNum]} </div> 
                             {

@@ -13,12 +13,6 @@ class SearchBar extends Component {
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
 
-
-        // Autosuggest is a controlled component.
-        // This means that you need to provide an input value
-        // and an onChange handler that updates this value (see below).
-        // Suggestions also need to be provided to the Autosuggest,
-        // and they are initially empty because the Autosuggest is closed.
         this.state = {
           value: '',
           suggestions: []
@@ -67,10 +61,6 @@ class SearchBar extends Component {
 
     handleForm(e) {
         e.preventDefault();
-
-        // may not need to clear search
-        //const inputVal = this.props.inputVal;
-        // const nameSearched = this.inputVal.value;
         let form = document.getElementById(this.props.inputVal);
         let input = form.getElementsByTagName("input")[0];
         let nameSearched = input.value;

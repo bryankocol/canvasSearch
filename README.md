@@ -21,7 +21,7 @@ Canvas Drug Search has a flask-python Backend API with a node.js React frontend 
 This means that you will need python, node, and create-react-app dependencies. 
 Python's dependencies are found in requirements.txt. You will need python's pip installer to run requirements.txt. Node and React's dependencies are found in package.json. You will need either node's npm or yarn installer to successfully download the libraries noted in packages.json.
 
-#Prerequisites Steps:
+# Prerequisites Steps:
 1) Download the project in a directory of its own. Navigate into the new directory and type in the following command.  
 
     $ git clone https://github.com/laurengordonfahn/canvasSearch.git
@@ -77,7 +77,7 @@ If using npm
 ``` 
 
 ## Built With:
-* Python- Backend Language
+*Python- Backend Language
 * Flask - Python web frame work
 * SqlAlchemy- Database Toolkit for python (ORM)
 * PostgreSQL- Object Relational Database System 

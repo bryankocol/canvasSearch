@@ -1,12 +1,12 @@
-#Canvas Drug Search
+# Canvas Drug Search
 
-##Project Description:
+## Project Description:
 
 Search for drugs by brand name, generic name, or main ingredient. Canvas Drug Search will supply you with all medication delivery options that match your search.  
 
 Search options powered by RxNorm API. 
 
-##Features:
+## Features:
 1) AutoSuggest for Search Bar Completion
 2) Multi-Select Option Menu to choose dosage and medication delivery method
 3) Save medication name option
@@ -14,9 +14,9 @@ Search options powered by RxNorm API.
 
 ## Getting Started:
 
-##Prerequisites:
+## Prerequisites:
 
-#Prerequisites General Information:
+# Prerequisites General Information:
 Canvas Drug Search has a flask-python Backend API with a node.js React frontend application.
 This means that you will need python, node, and create-react-app dependencies. 
 Python's dependencies are found in requirements.txt. You will need python's pip installer to run requirements.txt. Node and React's dependencies are found in package.json. You will need either node's npm or yarn installer to successfully download the libraries noted in packages.json.

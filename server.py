@@ -15,7 +15,7 @@ def index():
 
     return render_template("index.html")
 
-@app.route('/save/drugSearch', methods=['POST'])
+@app.route('/saveSearch', methods=['POST'])
 def saveDrugSearch():
     """ 
         Save Drug Options Selected To DataBase

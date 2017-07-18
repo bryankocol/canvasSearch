@@ -33,7 +33,7 @@ export function searchAllOptions(drugNumber) {
 
 export function saveSearchOption(drugName) {
   return $.ajax({
-    url: '/save/drugSearch',
+    url: '/saveSearch',
     type: 'POST',
     data: {
       drugName: drugName

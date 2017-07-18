@@ -4,12 +4,13 @@
 
 Search for drugs by brand name, generic name, or main ingredient. Canvas Drug Search will supply you with all medication delivery options that match your search.  
 
-Search options owered by RxNorm API. 
+Search options powered by RxNorm API. 
 
 ##Features:
 1) AutoSuggest for Search Bar Completion
-2) Multi-Select Option Menu to choose dosage and medication delievery method
+2) Multi-Select Option Menu to choose dosage and medication delivery method
 3) Save medication name option
+4) All Searches powered by RxNorm API
 
 ## Getting Started:
 
@@ -41,7 +42,7 @@ If you are uncertain if you have pip install visit the website : https://pip.pyp
 $ pip install -r requirements.txt
 ```
 
-5) Download package.json dependencies using yarn OR npm. The following command will source all dependencies in package.json. If you are not certain if you have yarn visit https://yarnpkg.com/lang/en/docs/install/.  Yarn will create yarn.lock which will show you all subdependencies utilized. Yarn also offers 'yarn upgrade' a command that will help you keep dependency libraries uptodate. 
+5) Download package.json dependencies using yarn OR npm. The following command will source all dependencies in package.json. If you are not certain if you have yarn visit https://yarnpkg.com/lang/en/docs/install/.  Yarn will create yarn.lock which will show you all sub-dependencies utilized. Yarn also offers 'yarn upgrade' a command that will help you keep dependency libraries up-to-date. 
 ```
     $ yarn install
 ```
@@ -80,9 +81,10 @@ If using npm
 * Flask - Python web frame work
 * SqlAlchemy- Database Toolkit for python (ORM)
 * PostgreSQL- Object Relational Database System 
-* Javascript- Front end language
+* JavaScript- Front end language
 * React - Front end Framework
-* JQuery- Javascript Library
+* JQuery- JavaScript Library
+* RxNorm - Third Party API
 
 ## Current Features Completed:
 * Auto Complete Search Bar
@@ -90,9 +92,9 @@ If using npm
 * Save Search Options
 
 ## Future Build-Out:
-* Build-Out test Javascript suites and Flask-Server test suites
-* Save Medication Search Built Out - Unsave, Save orginal search term with save, etc
-* Display Physcian recent search terms
+* Build-Out test JavaScript suites and Flask-Server test suites
+* Save Medication Search Built Out - Unsave, Save original search term with save, etc
+* Display Physician recent search terms
 * Publish API docs
 
 ## Author:

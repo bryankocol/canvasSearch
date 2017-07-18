@@ -72,11 +72,16 @@ class App extends Component {
                 });
             }
         });
-    
+
+        const stateDrugSearched = this.state.drugSearched;
+        
         this.setState({
             menuOptions: drugInfo, 
             drugSearched: response.drugGroup.name,
-            toDisplayMenu: true
+            menuOptionsSelected : {},
+            toDisplayMenu: true,
+            toDisplayOptions: false,
+            drugOptionsDisplay: {}
         });
     }
 

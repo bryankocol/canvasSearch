@@ -59,7 +59,6 @@ class ResultsMenu extends Component {
 ResultsMenu.propTypes = {
     drugOptions: PropTypes.arrayOf(PropTypes.object),
     value: PropTypes.arrayOf(PropTypes.object),
-    handleDrugsSelected: PropTypes.func,
     handleDrugsSelected: PropTypes.func
 };
 

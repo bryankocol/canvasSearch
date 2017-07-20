@@ -138,59 +138,8 @@ class App extends Component {
     }
 
     render(){
-        if (this.state.toDisplayMenu){
-            return(
-
-                <div className="appDiv container">
-                    <SearchBar 
-                        inputPlaceholder = "Drug Name"
-                        inputVal="drugName"
-                        btnName="Search"
-                        funcSearch={this.onDrugSearch}
-                        funcInput={this.ondrugFragSearch}
-                        terms={this.state.termsArray}
-                    />
-                    
-                    <ResultsMenu
-                        drugName={this.state.drugSearched}
-                        drugOptions={this.state.menuOptions} 
-                        handleDrugsSelected={this.handleDrugsSelected}
-                        value={this.state.value}
-                        handleSelectChange={this.handleSelectChange}
-                    />
-                </div>
-            );
-        }
-        else if (this.state.toDisplayOptions){
-            return(
-
-                <div className="appDiv container">
-                    <SearchBar 
-                        inputPlaceholder = "Drug Name"
-                        inputVal="drugName"
-                        btnName="Search"
-                        funcSearch={this.onDrugSearch}
-                        funcInput={this.ondrugFragSearch}
-                        terms={this.state.termsArray}
-                    />
-                    
-                    <ResultsMenu
-                        drugName={this.state.drugSearched}
-                        drugOptions={this.state.menuOptions} 
-                        handleDrugsSelected={this.handleDrugsSelected}
-                        value={this.state.value}
-                        handleSelectChange={this.handleSelectChange}
-                    />
-
-                    <OptionsDisplay 
-                        menuOptionsSelected={this.state.menuOptionsSelected}
-                        displayOptions={this.state.drugOptionsDisplay}
-                        onSaveSearchOption={this.onSaveSearchOption}
-                    />
-                </div>
-            );
-        }
         return(
+
             <div className="appDiv container">
                 <SearchBar 
                     inputPlaceholder = "Drug Name"
@@ -200,8 +149,23 @@ class App extends Component {
                     funcInput={this.ondrugFragSearch}
                     terms={this.state.termsArray}
                 />
+                
+               { (this.state.toDisplayMenu) ? <ResultsMenu
+                    drugName={this.state.drugSearched}
+                    drugOptions={this.state.menuOptions} 
+                    handleDrugsSelected={this.handleDrugsSelected}
+                    value={this.state.value}
+                    handleSelectChange={this.handleSelectChange}
+                /> : null }
+
+                { (this.state.toDisplayOptions) ? <OptionsDisplay 
+                    menuOptionsSelected={this.state.menuOptionsSelected}
+                    displayOptions={this.state.drugOptionsDisplay}
+                    onSaveSearchOption={this.onSaveSearchOption}
+                /> : null}
             </div>
         );
+
     }
 }
 

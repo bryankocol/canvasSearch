@@ -7,17 +7,17 @@
     * OptionsDisplay
 
 
-# State - Explaination of how each state is set
+# State - Explanation of how each state is set
     * termsArray
         Type: Array of Strings
         Content: Drug and ingredient names
         Source: RxNorm API Endpoint - /displaynames
-        Trigger: Filled Once before intial rendering of page using lifecylce function
+        Trigger: Filled Once before initial rendering of page using lifecylce function
         Function Cascade: componentWillMount > queryAutoCompleteTerms > api.autoCompleteTerms > queryAutoCompleteTerms(response)
 
     * drugSearched
         Type: String
-        Content: Drug name or ingriedent
+        Content: Drug name or ingredient
         Source: SearchBar component input from user
         Trigger: OnSubmit from SearchBar - handleForm SearchBar Component
         Function Cascade: handleForm - searchBar component > onDrugSearch(drugName) > api.drugSearch(drugName) > 
@@ -25,7 +25,7 @@
 
     * toDisplayMenu
         Type: Boolean
-        Content: Intial False
+        Content: Initial False
         Source: When menuOptions state is sourced
         Trigger: Switch to true when searchBar component drug search returns content for ResultsMenu component
         Function Cascade false to true: handleForm -searchBar component > onDrugSearch(drugName) > api.drugSearch(drugName)     > onDrugSearchSuccess(response)
@@ -33,7 +33,7 @@
 
     * toDisplayOptions
         Type: Boolean
-        Content: Intial False
+        Content: Initial False
         Source: When drugOptionsDisplay state is set with content 
         Trigger: Switch to true when options are chosen from the ResultsMenu and an api call returns content for    
             OptionsDisplay component to render
@@ -44,7 +44,7 @@
     * value
         Type: Array of objects of drugName:DrugRxCuiNumber
         Content: ResultsMenu Component options selected by user 
-        Purpose: Feeds Select Component - a libarary component inside of ResultsMenu
+        Purpose: Feeds Select Component - a library component inside of ResultsMenu
         Source: ResultsMenu component handleSelectChange
         Trigger: User Selecting options in the ResultsMenu component and pressing submit
         Function Cascade: handleFinalSelection - ResultsMenu component 
@@ -55,19 +55,19 @@
         Source: drugSynonum : RxCuiDrugNumber pairs when drug searchBar component returns api response
         Trigger: Drug Name searchBar Component API call Response
         Function Cascade: handleForm - searchBar Component  > onDrugSearch(drugName) > onDrugSearchSuccess(response) > onDrugSearchSuccess(response)
-        Note: This is fills the ResultsMenu component and is used for cross refrence with drugOptionsDisplay when creating subheaders for the OptionsDisplay
+        Note: This is fills the ResultsMenu component and is used for cross reference with drugOptionsDisplay when creating sub-headers for the OptionsDisplay
 
     * menuOptionsSelected
         Type: Object of Objects of string key value pairs
         Content: rxcui Number of Menu Selected Option : Drug Name Pair of the options from the OptionsMenu selected
         Source: Drug Options selected from the ResultsMenu for final search
-        Trigger: Submiting ResultsMenu options selected
+        Trigger: Submitting ResultsMenu options selected
         Function Cascade:  handleFinalSelection() ReulstMenu Component > handleDrugsSelected(selectedDrugs) 
         Function Cascade clear back to {} :  onDrugSearch(drugName) > onDrugSearchSuccess(response) > onDrugSearchSuccess(response) - for new search
 
     * drugOptionsDisplay
         Type: Object of Objects of string key value pairs
-        Content: rxcuiDrugNumberSearched Intially, with object of rxcuiDrug Number selected from ResultsMenu with name of drug as value
+        Content: rxcuiDrugNumberSearched Initially, with object of rxcuiDrug Number selected from ResultsMenu with name of drug as value
         Source: Submit of ResultsMenu
         Trigger: From ResultsMenu selections resulting API response
         Function Cascade: handleFinalSelection() ReulstMenu Component > handleDrugsSelected(selectedDrugs) >  api.searchAllOptions(drugNumber) >  onhandleDrugsSelectedSuccess(response)
@@ -77,7 +77,7 @@
 # App.js Methods 
 1) Set-Up
     * componentWillMount() 
-        Trigger: Intial Render of ReactDOM
+        Trigger: Initial Render of ReactDOM
         Purpose: Runs any needed functions that must load before ReactDOM
         Note: Built in "LifeCyle" Method for React
 
@@ -87,7 +87,7 @@
 
     * api.autoCompleteTerms()
         Trigger: componentWillMount > queryAutoCompleteTerms()
-        Purpose: calls RxNorm displaynames endpoint to fill termArray state for use in autosuggest for SearchBar
+        Purpose: calls RxNorm /displaynames endpoint to fill termArray state for use in autosuggest for SearchBar
 
     * onQueryAutoCompleteTermsSuccess(response)
         Trigger: API response from api.autoCompleteTerms
@@ -96,7 +96,7 @@
 2) SearchBar Component
     * onDrugSearch(drugName)
         Trigger: SearchBar submit
-        Purpose: To call API query on drugName or ingrident submited by user
+        Purpose: To call API query on drugName or ingredient submitted by user
 
     * api.drugSearch(drugName)
         Trigger: onDrugSearch(drugName)
@@ -122,15 +122,15 @@
 
     * handleDrugsSelected(selectedDrugs)
         Trigger: ResultsMenu submit
-        Purpose: API call to gather all options for drug dosage/administration type and state of menuOptionsSelected 
-        setState: menuOptionsSelected - for cross refrence later on OptionsDisplay
+        Purpose: API call to gather all options for drug administration type and state of menuOptionsSelected 
+        setState: menuOptionsSelected - for cross reference later on OptionsDisplay
 
     * api.searchAllOptions(drugNumber)
         Trigger: handleDrugsSelected(selectedDrugs)
-        Purpose: API call to /related end point to gather all options for a drug dosage/administration type
+        Purpose: API call to /related end point to gather all options for a drug administration type
 
     * onhandleDrugsSelectedSuccess(response)
-        Trigger:api.searchAllOptions(drugNumber) API query response
+        Trigger: api.searchAllOptions(drugNumber) API query response
         Purpose: Parse response from API with final drug options for OptionsDisplay
         setState: 
                 drugOptionsDisplay: stateDrugOptionDisplay, - to fill OptionsDisplay component
@@ -153,7 +153,7 @@
         Purpose: Information to be displayed
     * menuOptionsSelected: 
         PropTypes.object
-        Purpose: Cross frences for displayOptions so there are subHeaders of what drug orginally searched to get to display material
+        Purpose: Cross references for displayOptions so there are subHeaders of what drug originally searched to get to display material
     * onSaveSearchOption: 
         PropTypes.func
         Purpose: Trigger App component level handling of save request
@@ -163,7 +163,7 @@
         Purpose: Stop form default, gather hidden input value for drug to be saved and trigger onSaveSearchOption(drugNameVal) at App component level
     * renderOptionForm(innerRxcui, obj)
         Trigger: Rendering of component
-        Purpose: Parses for display displayOptions state uses menuOptionsSelected as cross refrence for subHeader
+        Purpose: Parses for display displayOptions state uses menuOptionsSelected as cross reference for subHeader
 
 
 # ResultsMenu.js
@@ -177,7 +177,7 @@
         state at present of menu options selected
     handleDrugsSelected: 
         PropTypes.func
-        Trigger App component level handling of drugsSelectd for API quering
+        Trigger App component level handling of drugsSelectd for API querying
 
 ## ResultsMenu Methods:
     * displayOptions(drugOptions)
@@ -198,7 +198,7 @@
     * suggestions: []
         Trigger: User typing in Search Bar
         Source: termsArray
-        Purpose: For AutoFill autosuggestion feture of searchBar
+        Purpose: For AutoFill autosuggestion feature of searchBar
 
 ## SearchBar Props:
     * terms: 
@@ -206,13 +206,13 @@
         Purpose: used in getSuggestions for autosuggestions
     * btnName: 
         PropTypes.string
-        Purpose: Button Name to make searchBar more resuable
+        Purpose: Button Name to make searchBar more reusable
     * funcInput: 
         PropTypes.func
-        Purpose: function to handle onchange events in input to make searchBar more resuable
+        Purpose: function to handle on change events in input to make searchBar more reusable
     * funcSearch: 
         PropTypes.func 
-        Purpose: function to handle submiting of search bar to make searchBar more resuable
+        Purpose: function to handle submitting of search bar to make searchBar more reusable
 
 ## SearchBar Methods:
     * renderSuggestions(suggestions) 

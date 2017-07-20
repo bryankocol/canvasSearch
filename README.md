@@ -1,12 +1,12 @@
-#Canvas Drug Search
+# Canvas Drug Search
 
-##Project Description:
+## Project Description:
 
 Search for drugs by brand name, generic name, or main ingredient. Canvas Drug Search will supply you with all medication delivery options that match your search.  
 
 Search options powered by RxNorm API. 
 
-##Features:
+## Features:
 1) AutoSuggest for Search Bar Completion
 2) Multi-Select Option Menu to choose dosage and medication delivery method
 3) Save medication name option
@@ -14,14 +14,14 @@ Search options powered by RxNorm API.
 
 ## Getting Started:
 
-##Prerequisites:
+## Prerequisites:
 
-#Prerequisites General Information:
+# Prerequisites General Information:
 Canvas Drug Search has a flask-python Backend API with a node.js React frontend application.
 This means that you will need python, node, and create-react-app dependencies. 
 Python's dependencies are found in requirements.txt. You will need python's pip installer to run requirements.txt. Node and React's dependencies are found in package.json. You will need either node's npm or yarn installer to successfully download the libraries noted in packages.json.
 
-#Prerequisites Steps:
+# Prerequisites Steps:
 1) Download the project in a directory of its own. Navigate into the new directory and type in the following command.  
 
     $ git clone https://github.com/laurengordonfahn/canvasSearch.git
@@ -55,7 +55,6 @@ If using npm :
 This project uses webpack to building all frontend files.
 In packages.json devDependencies is empty but before this project was deployed held the react-scripts requirement found now in dependencies. This change enabled deployment in build mode. 
 
-```
 ## Installing:
 1) create a database using postgres and source the database. To learn more about postgres: https://www.postgresql.org/download/. The seed.py file contains basic color options for your calendar and is essential. 
 ``` 

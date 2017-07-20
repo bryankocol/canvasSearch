@@ -82,11 +82,12 @@ class App extends Component {
         });
     }
 
-
     onDrugSearch(drugName){
         api.drugSearch(drugName)
             .then(response => this.onDrugSearchSuccess(response))
     }
+
+     //// Set State of Value selected in ResultsMenu Not Final but only changes to value state ///
 
     handleSelectChange(value) {
         this.setState({value});
@@ -132,6 +133,7 @@ class App extends Component {
         this.setState({menuOptionsSelected: selectedDrugsDict})
     }
 
+    /////Save Final Drug Choices from OptionsDisplay Component to DB ///
     onSaveSearchOption(drugName){
         api.saveSearchOption(drugName)
             .then(response => console.log("Your Search Has Been Saved"))

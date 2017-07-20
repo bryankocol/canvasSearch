@@ -76,167 +76,167 @@
 
 # App.js Methods 
 1) Set-Up
-    * componentWillMount() 
-        Trigger: Initial Render of ReactDOM
-        Purpose: Runs any needed functions that must load before ReactDOM
-        Note: Built in "LifeCyle" Method for React
+* componentWillMount() 
+    Trigger: Initial Render of ReactDOM
+    Purpose: Runs any needed functions that must load before ReactDOM
+    Note: Built in "LifeCyle" Method for React
 
-    * queryAutoCompleteTerms()
-        Trigger: componentWillMount
-        Purpose: Fill termsArray state for use in autosuggest for SearchBar
+* queryAutoCompleteTerms()
+    Trigger: componentWillMount
+    Purpose: Fill termsArray state for use in autosuggest for SearchBar
 
-    * api.autoCompleteTerms()
-        Trigger: componentWillMount > queryAutoCompleteTerms()
-        Purpose: calls RxNorm /displaynames endpoint to fill termArray state for use in autosuggest for SearchBar
+* api.autoCompleteTerms()
+    Trigger: componentWillMount > queryAutoCompleteTerms()
+    Purpose: calls RxNorm /displaynames endpoint to fill termArray state for use in autosuggest for SearchBar
 
-    * onQueryAutoCompleteTermsSuccess(response)
-        Trigger: API response from api.autoCompleteTerms
-        Purpose: Parses and sets termsArray state for use in autosuggest for SearchBar
+* onQueryAutoCompleteTermsSuccess(response)
+    Trigger: API response from api.autoCompleteTerms
+    Purpose: Parses and sets termsArray state for use in autosuggest for SearchBar
 
 2) SearchBar Component
-    * onDrugSearch(drugName)
-        Trigger: SearchBar submit
-        Purpose: To call API query on drugName or ingredient submitted by user
+* onDrugSearch(drugName)
+    Trigger: SearchBar submit
+    Purpose: To call API query on drugName or ingredient submitted by user
 
-    * api.drugSearch(drugName)
-        Trigger: onDrugSearch(drugName)
-        Purpose: calls RxNorm /drugs endpoint to gather other drug equivalent options
+* api.drugSearch(drugName)
+    Trigger: onDrugSearch(drugName)
+    Purpose: calls RxNorm /drugs endpoint to gather other drug equivalent options
 
-    * onDrugSearchSuccess(response)
-        Trigger: api.drugSearch(drugName) API query response
-        Purpose: Parse response from API with alternate drug options    
-        setState: 
-            menuOptions: drugInfo, - fill ResultsMenu 
-            drugSearched: response.drugGroup.name,
-            menuOptionsSelected : {}, - clear for new search
-            toDisplayMenu: true, - to advance users steps through application
-            toDisplayOptions: false, - reset for new search
-            drugOptionsDisplay: {},  - clear for new search
-            value: [] - clear for new search
+* onDrugSearchSuccess(response)
+    Trigger: api.drugSearch(drugName) API query response
+    Purpose: Parse response from API with alternate drug options    
+    setState: 
+        menuOptions: drugInfo, - fill ResultsMenu 
+        drugSearched: response.drugGroup.name,
+        menuOptionsSelected : {}, - clear for new search
+        toDisplayMenu: true, - to advance users steps through application
+        toDisplayOptions: false, - reset for new search
+        drugOptionsDisplay: {},  - clear for new search
+        value: [] - clear for new search
 
 3) ReusltsMenu Component
-    * handleSelectChange(value) 
-        Trigger: User selecting options in ResultsMenu
-        Purpose: Set value state with drug options from ReusltsMenu 
-        setState: value with drug options selected by user
+* handleSelectChange(value) 
+    Trigger: User selecting options in ResultsMenu
+    Purpose: Set value state with drug options from ReusltsMenu 
+    setState: value with drug options selected by user
 
-    * handleDrugsSelected(selectedDrugs)
-        Trigger: ResultsMenu submit
-        Purpose: API call to gather all options for drug administration type and state of menuOptionsSelected 
-        setState: menuOptionsSelected - for cross reference later on OptionsDisplay
+* handleDrugsSelected(selectedDrugs)
+    Trigger: ResultsMenu submit
+    Purpose: API call to gather all options for drug administration type and state of menuOptionsSelected 
+    setState: menuOptionsSelected - for cross reference later on OptionsDisplay
 
-    * api.searchAllOptions(drugNumber)
-        Trigger: handleDrugsSelected(selectedDrugs)
-        Purpose: API call to /related end point to gather all options for a drug administration type
+* api.searchAllOptions(drugNumber)
+    Trigger: handleDrugsSelected(selectedDrugs)
+    Purpose: API call to /related end point to gather all options for a drug administration type
 
-    * onhandleDrugsSelectedSuccess(response)
-        Trigger: api.searchAllOptions(drugNumber) API query response
-        Purpose: Parse response from API with final drug options for OptionsDisplay
-        setState: 
-                drugOptionsDisplay: stateDrugOptionDisplay, - to fill OptionsDisplay component
-                toDisplayOptions: true, - to advance users steps through application
-                toDisplayMenu: false- clear for new potential search
+* onhandleDrugsSelectedSuccess(response)
+    Trigger: api.searchAllOptions(drugNumber) API query response
+    Purpose: Parse response from API with final drug options for OptionsDisplay
+    setState: 
+            drugOptionsDisplay: stateDrugOptionDisplay, - to fill OptionsDisplay component
+            toDisplayOptions: true, - to advance users steps through application
+            toDisplayMenu: false- clear for new potential search
 4) OptionsDisplay Component
-    * onSaveSearchOption(drugName)
-        Trigger: User press save button in OptiosnDisplay
-        Purpose: To save drug option selected to database
+* onSaveSearchOption(drugName)
+    Trigger: User press save button in OptiosnDisplay
+    Purpose: To save drug option selected to database
 
-    * api.saveSearchOption(drugName)
-        Trigger: onSaveSearchOption(drugName)
-        Purpose: To send drugOpiton chosen by user to Backend Server to be saved in DB
+* api.saveSearchOption(drugName)
+    Trigger: onSaveSearchOption(drugName)
+    Purpose: To send drugOpiton chosen by user to Backend Server to be saved in DB
 
 # OptionsDisplay.js 
 
 ## OptionsDisplay Props: 
-    * displayOptions: 
-        PropTypes.objectOf(PropTypes.object)
-        Purpose: Information to be displayed
-    * menuOptionsSelected: 
-        PropTypes.object
-        Purpose: Cross references for displayOptions so there are subHeaders of what drug originally searched to get to display material
-    * onSaveSearchOption: 
-        PropTypes.func
-        Purpose: Trigger App component level handling of save request
+* displayOptions: 
+    PropTypes.objectOf(PropTypes.object)
+    Purpose: Information to be displayed
+* menuOptionsSelected: 
+    PropTypes.object
+    Purpose: Cross references for displayOptions so there are subHeaders of what drug originally searched to get to display material
+* onSaveSearchOption: 
+    PropTypes.func
+    Purpose: Trigger App component level handling of save request
 ## OptionsDisplay Methods:
-    * handleOnClick(e)
-        Trigger: Press Save Button
-        Purpose: Stop form default, gather hidden input value for drug to be saved and trigger onSaveSearchOption(drugNameVal) at App component level
-    * renderOptionForm(innerRxcui, obj)
-        Trigger: Rendering of component
-        Purpose: Parses for display displayOptions state uses menuOptionsSelected as cross reference for subHeader
+* handleOnClick(e)
+    Trigger: Press Save Button
+    Purpose: Stop form default, gather hidden input value for drug to be saved and trigger onSaveSearchOption(drugNameVal) at App component level
+* renderOptionForm(innerRxcui, obj)
+    Trigger: Rendering of component
+    Purpose: Parses for display displayOptions state uses menuOptionsSelected as cross reference for subHeader
 
 
 # ResultsMenu.js
 
 ## ResultsMenu Props:
-    drugOptions: 
-        PropTypes.arrayOf(PropTypes.object)
-        Fill Results Menu with options
-    value: 
-        PropTypes.arrayOf(PropTypes.object)
-        state at present of menu options selected
-    handleDrugsSelected: 
-        PropTypes.func
-        Trigger App component level handling of drugsSelectd for API querying
+* drugOptions: 
+    PropTypes.arrayOf(PropTypes.object)
+    Fill Results Menu with options
+* value: 
+    PropTypes.arrayOf(PropTypes.object)
+    state at present of menu options selected
+* handleDrugsSelected: 
+    PropTypes.func
+    Trigger App component level handling of drugsSelectd for API querying
 
 ## ResultsMenu Methods:
-    * displayOptions(drugOptions)
-        Trigger: Render of Component
-        Purpose: Parse drugOptions state to fill menu
-    * handleSelectChange (value)
-        Trigger: User selection of an option from the menu
-        Purpose: To set value of what is in the menu at the time
-    * handleFinalSelection()
-        Trigger: submit of menu's selections by user
-        Purpose: submit to App component handleDrugsSelected(selectedDrugs) menu options selected for API query
+* displayOptions(drugOptions)
+    Trigger: Render of Component
+    Purpose: Parse drugOptions state to fill menu
+* handleSelectChange (value)
+    Trigger: User selection of an option from the menu
+    Purpose: To set value of what is in the menu at the time
+* handleFinalSelection()
+    Trigger: submit of menu's selections by user
+    Purpose: submit to App component handleDrugsSelected(selectedDrugs) menu options selected for API query
 
 # SearchBar.js
 ## SearchBar State:
-    * value: ""
-        Trigger: User Input to SearchBar
-        Purpose: For AutoFill autosuggest feature of searchBar
-    * suggestions: []
-        Trigger: User typing in Search Bar
-        Source: termsArray
-        Purpose: For AutoFill autosuggestion feature of searchBar
+* value: ""
+    Trigger: User Input to SearchBar
+    Purpose: For AutoFill autosuggest feature of searchBar
+* suggestions: []
+    Trigger: User typing in Search Bar
+    Source: termsArray
+    Purpose: For AutoFill autosuggestion feature of searchBar
 
 ## SearchBar Props:
-    * terms: 
-        PropTypes.arrayOf(PropTypes.object)
-        Purpose: used in getSuggestions for autosuggestions
-    * btnName: 
-        PropTypes.string
-        Purpose: Button Name to make searchBar more reusable
-    * funcInput: 
-        PropTypes.func
-        Purpose: function to handle on change events in input to make searchBar more reusable
-    * funcSearch: 
-        PropTypes.func 
-        Purpose: function to handle submitting of search bar to make searchBar more reusable
+* terms: 
+    PropTypes.arrayOf(PropTypes.object)
+    Purpose: used in getSuggestions for autosuggestions
+* btnName: 
+    PropTypes.string
+    Purpose: Button Name to make searchBar more reusable
+* funcInput: 
+    PropTypes.func
+    Purpose: function to handle on change events in input to make searchBar more reusable
+* funcSearch: 
+    PropTypes.func 
+    Purpose: function to handle submitting of search bar to make searchBar more reusable
 
 ## SearchBar Methods:
-    * renderSuggestions(suggestions) 
-        Trigger: 
-        Purpose: To render to the dom the options for autosuggest
-    * handleForm
-        Trigger: click or return by user of searchbar form
-        Purpose: to send input to App level for handling of search
-    * handleChange - NOT Used
-        Trigger: to handle letter by letter change by user in search bar
-        Purpose: NOT used could be used for spell check tracks user letter changes
-    * onChange
-        Trigger: key strokes in search bar
-        Note: autosuggest function need change name
-        Purpose: to support autosuggest 
-    * getSuggestions
-        Trigger: onSuggestionsFetchRequested ({ value })
-        Purpose: returns autosuggestions from terms prop to feed suggstions state
-    * getSuggestionValue
-        Trigger: !!!!!!! Look into this - AutoSuggest component function
-        Purpose:
-    * onSuggestionsFetchRequested
-        Trigger: !!! Look into this - AutoSuggest component function
-        Purpose: to set state of suggestions setImmediate helps make asynchronous for browsers that support it it is not supported ever where not for production use!
-    * onSuggestionsClearRequested
-        Trigger: !!!! Look into this - AutoSuggest component function
-        Purpose: reset suggestions state to []
+* renderSuggestions(suggestions) 
+    Trigger: 
+    Purpose: To render to the dom the options for autosuggest
+* handleForm
+    Trigger: click or return by user of searchbar form
+    Purpose: to send input to App level for handling of search
+* handleChange - NOT Used
+    Trigger: to handle letter by letter change by user in search bar
+    Purpose: NOT used could be used for spell check tracks user letter changes
+* onChange
+    Trigger: key strokes in search bar
+    Note: autosuggest function need change name
+    Purpose: to support autosuggest 
+* getSuggestions
+    Trigger: onSuggestionsFetchRequested ({ value })
+    Purpose: returns autosuggestions from terms prop to feed suggstions state
+* getSuggestionValue
+    Trigger: !!!!!!! Look into this - AutoSuggest component function
+    Purpose:
+* onSuggestionsFetchRequested
+    Trigger: !!! Look into this - AutoSuggest component function
+    Purpose: to set state of suggestions setImmediate helps make asynchronous for browsers that support it it is not supported ever where not for production use!
+* onSuggestionsClearRequested
+    Trigger: !!!! Look into this - AutoSuggest component function
+    Purpose: reset suggestions state to []
